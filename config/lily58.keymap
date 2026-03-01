@@ -11,41 +11,13 @@
 
 / {
     behaviors {
-        td_ctrl_c: td_ctrl_c {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_CTRL_C";
-            #binding-cells = <0>;
-            bindings = <&kp C>, <&kp LC(C)>;
-        };
-
-        td_ctrl_x: td_ctrl_x {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_CTRL_X";
-            #binding-cells = <0>;
-            bindings = <&kp X>, <&kp LC(X)>;
-        };
-
-        td_ctrl_v: td_ctrl_v {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_CTRL_V";
-            #binding-cells = <0>;
-            bindings = <&kp V>, <&kp LC(V)>;
-        };
-
-        td_ctrl_z: td_ctrl_z {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_CTRL_Z";
-            #binding-cells = <0>;
-            bindings = <&kp Z>, <&kp LC(Z)>;
-        };
-
         ht_left: ht_left {
             compatible = "zmk,behavior-hold-tap";
             label = "HT_LEFT";
             bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <200>;
             hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 43 44 45 46 47 48 49 54 55 56 57>;
             flavor = "tap-preferred";
         };
@@ -56,7 +28,7 @@
             bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <200>;
             flavor = "tap-preferred";
             hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 42 50 51 52 53>;
         };
@@ -74,10 +46,10 @@
             //                     | LOWER|  GUI | ALT  |  SPACE |  | ENTER | RAISE| BSPC  | DEL   |
 
             bindings = <
-&kp ESC         &kp N1               &kp N2               &kp N3                 &kp N4            &kp N5                         &kp N6  &kp N7             &kp N8                   &kp N9                 &kp N0                    &kp EQUAL
-&kp TAB         &kp Q                &kp W                &kp E                  &kp R             &kp T                          &kp Y   &kp U              &kp I                    &kp O                  &kp P                     &kp MINUS
-&kp LCTRL       &ht_left LEFT_WIN A  &ht_left LEFT_ALT S  &ht_left LEFT_SHIFT D  &ht_left LCTRL F  &kp G                          &kp H   &ht_right RCTRL J  &ht_right RIGHT_SHIFT K  &ht_right RIGHT_ALT L  &ht_right RIGHT_GUI SEMI  &kp SQT
-&sk LEFT_SHIFT  &td_ctrl_z           &td_ctrl_x           &td_ctrl_c             &td_ctrl_v        &kp B   &kp LBKT     &kp RBKT  &kp N   &kp M              &kp COMMA                &kp DOT                &kp FSLH                  &kp BSLH
+&kp ESC         &kp N1               &kp N2               &kp N3                 &kp N4            &kp N5                         &kp N6  &kp N7             &kp N8                   &kp N9                 &kp N0                 &kp EQUAL
+&kp TAB         &kp Q                &kp W                &kp F                  &kp P             &kp G                          &kp J   &kp L              &kp U                    &kp Y                  &kp SEMICOLON          &kp MINUS
+&kp LCTRL       &ht_left LEFT_WIN A  &ht_left LEFT_ALT R  &ht_left LEFT_SHIFT S  &ht_left LCTRL T  &kp D                          &kp H   &ht_right RCTRL N  &ht_right RIGHT_SHIFT E  &ht_right RIGHT_ALT I  &ht_right RIGHT_GUI O  &kp SQT
+&sk LEFT_SHIFT  &kp Z                &kp X                &kp C                  &kp V             &kp B   &kp LBKT     &kp RBKT  &kp K   &kp M              &kp COMMA                &kp DOT                &kp FSLH               &kp BSLH
                                                           &kp LEFT_WIN           &kp LEFT_ALT      &mo 2   &kp SPACE    &kp RET   &mo 1   &kp BACKSPACE      &kp DELETE
             >;
         };
@@ -93,19 +65,12 @@
         };
 
         numpad {
-            // ------------------------------------------------------------------------------------------------------------
-            // |  `    |  %  |  7  |  8   |  9   |  /   |                   |      |       |       |      |       | PSCR  |
-            // | Caps  |  =  |  4  |  5   |  6   |  *   |                   |      |       |       |      | PG UP | PG DN |
-            // |       |     |  1  |  2   |  3   |  +   |                   |  <-  |   v   |  ^    |  ->  | Home  |  END  |
-            // |       |     |  0  |  0   |  .   |  -   |        |  |       |      |       |       |      |       |       |
-            //                     |      |      |      |        |  |       |      |       |       |
-
             bindings = <
-&kp GRAVE  &kp PRCNT  &kp N7  &kp N8  &kp N9   &kp FSLH                       &kp HOME  &kp END   &kp PAGE_UP  &kp PAGE_DOWN  &trans  &trans
-&kp CAPS   &kp EQUAL  &kp N4  &kp N5  &kp N6   &kp ASTRK                      &trans    &trans    &trans       &trans         &trans  &trans
-&trans     &trans     &kp N1  &kp N2  &kp N3   &kp KP_PLUS                    &kp LEFT  &kp DOWN  &kp UP       &kp RIGHT      &trans  &trans
-&trans     &trans     &kp N0  &kp N0  &kp DOT  &kp MINUS    &trans    &trans  &trans    &trans    &trans       &trans         &trans  &trans
-                              &trans  &trans   &trans       &trans    &trans  &trans    &trans    &trans
+&kp GRAVE  &kp END   &kp PAGE_UP   &kp PAGE_DOWN   &kp HOME         &trans                         &kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp N9        &trans  &trans
+&trans     &trans    &trans        &trans          &trans           &trans                         &kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans  &kp CAPSLOCK
+&trans     &kp LEFT  &kp UP_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans                         &kp PLUS      &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans
+&trans     &trans    &trans        &trans          &trans           &trans  &trans    &kp PERCENT  &kp MINUS     &kp EQUAL     &kp NUMBER_0  &kp DOT       &trans  &trans
+                                   &trans          &trans           &trans  &trans    &trans       &trans        &trans        &trans
             >;
         };
 
@@ -124,7 +89,7 @@
         compatible = "zmk,conditional-layers";
 
         functional_layer {
-            if-layers = <2 1>;
+            if-layers = <1 2>;
             then-layer = <3>;
         };
     };
