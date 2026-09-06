@@ -27,3 +27,13 @@ include:
     shield: dactyl_cygnus_left
   - board: nice_nano_v2
     shield: dactyl_cygnus_right
+  # TEMPORARY hardware bring-up test: builds dactyl_cygnus_right as a
+  # standalone, non-split keyboard (no left half / pairing needed) so it can
+  # be tested alone over USB while the left board is being diagnosed. Pins
+  # are still Corne placeholders, so this only proves the board + matrix
+  # scanning work at all -- not that keys map to the right letters yet.
+  # Remove this entry once both halves are confirmed good and wired for real.
+  - board: nice_nano_v2
+    shield: dactyl_cygnus_right
+    cmake-args: -DCONFIG_ZMK_SPLIT=n
+    artifact-name: dactyl_cygnus_right_standalone_test
