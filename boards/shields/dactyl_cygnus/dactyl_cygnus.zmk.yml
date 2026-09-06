@@ -1,0 +1,11 @@
+file_format: "1"
+id: dactyl_cygnus
+name: Dactyl Cygnus
+type: shield
+url: https://github.com/juhakaup/dactyl-cygnus
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - dactyl_cygnus_left
+  - dactyl_cygnus_right
