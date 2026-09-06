@@ -1,10 +1,13 @@
 #include "dactyl_cygnus.dtsi"
 
 &kscan0 {
-    // TODO PLACEHOLDER — replace with your real left-half column wiring
-    // (5 columns).
+    // TODO PLACEHOLDER — still unconfirmed (left board can't be bench-tested
+    // yet, see BUILD_NOTES). Mirrored the same 21->14 pinky-column swap
+    // found on the right half as a best guess (pinky column is col-gpios[0]
+    // here since left's column order is reversed vs right's) -- re-test once
+    // the left board's USB enumeration issue is resolved.
     col-gpios
-        = <&pro_micro 21 GPIO_ACTIVE_HIGH>
+        = <&pro_micro 14 GPIO_ACTIVE_HIGH>
         , <&pro_micro 20 GPIO_ACTIVE_HIGH>
         , <&pro_micro 19 GPIO_ACTIVE_HIGH>
         , <&pro_micro 18 GPIO_ACTIVE_HIGH>

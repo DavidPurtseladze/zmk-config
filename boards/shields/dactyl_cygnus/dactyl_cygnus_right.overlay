@@ -5,13 +5,17 @@
 };
 
 &kscan0 {
-    // TODO PLACEHOLDER — replace with your real right-half column wiring
-    // (5 columns).
+    // Confirmed by bench-testing dactyl_cygnus_right_standalone_test:
+    // index/middle/ring columns (pins 15/18/19/20) matched the Corne
+    // placeholder and work. Pinky column did NOT respond on pin 21 — swapped
+    // to pin 14 (the 6th pin in Corne's own 6-column convention, which we'd
+    // dropped since we only needed 5) as the most likely real wiring. Needs
+    // re-test to confirm.
     col-gpios
         = <&pro_micro 15 GPIO_ACTIVE_HIGH>
         , <&pro_micro 18 GPIO_ACTIVE_HIGH>
         , <&pro_micro 19 GPIO_ACTIVE_HIGH>
         , <&pro_micro 20 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 21 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH>
         ;
 };
