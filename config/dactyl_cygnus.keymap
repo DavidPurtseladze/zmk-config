@@ -75,16 +75,19 @@
                 };
 
                 raise_layer {
+// One rule for the whole layer: home row = base symbol, bottom row =
+// its Shift-variant, same column. (Top row already follows this same
+// pattern relative to lower_layer's number row.)
 // -----------------------------------------------------------------
 // |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )   |
-// |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \   |
-// |     |     |     |     |     |   |  _  |  +  |  {  |  }  |  ~   |
-//             | GUI |     | SPC |   | ENT |     | ALT |
+// |  `  |  -  |  =  |  [  |  ]  |   |  \  |  ;  |  '  |  ,  |  .   |
+// |  ~  |  _  |  +  |  {  |  }  |   |  |  |  :  |  "  |  <  |  >   |
+//             | GUI | DEF | SPC |   | ENT | NAV | ALT |
                         bindings = <
-   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR
-   &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH
-   &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp TILDE
-                    &kp LGUI &trans &kp SPACE   &kp RET &trans &kp RALT
+   &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET &kp AMPS &kp ASTRK &kp LPAR   &kp RPAR
+   &kp GRAVE &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT     &kp BSLH  &kp SEMI &kp SQT   &kp COMMA  &kp DOT
+   &kp TILDE &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC     &kp PIPE  &kp COLON &kp DQT  &kp LS(COMMA) &kp LS(DOT)
+                    &kp LGUI &to 0 &kp SPACE   &kp RET &to 3 &kp RALT
                         >;
                 };
 
