@@ -12,6 +12,21 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+        macros {
+// Each taps the tmux prefix (ctrl+space) then releases it before tapping
+// the window number -- tmux's prefix is a leader key, not a held chord.
+                tmux_win1: tmux_win1 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N1>; };
+                tmux_win2: tmux_win2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N2>; };
+                tmux_win3: tmux_win3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N3>; };
+                tmux_win4: tmux_win4 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N4>; };
+                tmux_win5: tmux_win5 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N5>; };
+                tmux_win6: tmux_win6 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N6>; };
+                tmux_win7: tmux_win7 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N7>; };
+                tmux_win8: tmux_win8 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N8>; };
+                tmux_win9: tmux_win9 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N9>; };
+                tmux_win0: tmux_win0 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(SPACE) &kp N0>; };
+        };
+
         keymap {
                 compatible = "zmk,keymap";
 
@@ -69,13 +84,16 @@
 // -----------------------------------------------------------------
 // |SUP+SFT+1|SUP+SFT+2|SUP+SFT+3|SUP+SFT+4|SUP+SFT+5| |SUP+SFT+6|SUP+SFT+7|SUP+SFT+8|SUP+SFT+9|SUP+SFT+0|  move app to workspace
 // | SUP+1   | SUP+2   | SUP+3   | SUP+4   | SUP+5   | | SUP+6   | SUP+7   | SUP+8   | SUP+9   | SUP+0   |  switch to workspace
-// |         |         |         |         |         | |         |         |         |         |         |  TODO: tmux/browser shortcuts
-//                     |  GUI    |  LWR    |  SPC    | |  ENT    |  RSE    |  ALT    |
+// | tmux 1  | tmux 2  | tmux 3  | tmux 4  | tmux 5  | | tmux 6  | tmux 7  | tmux 8  | tmux 9  | tmux 0  |  ctrl+space then N
+//           |  GUI    |CTL+SFT+TAB|  SPC  | |  ENT  |CTRL+TAB |  ALT    |
+// thumb outer keys: ctrl+alt+f (left) / ctrl+alt+n (right) -- switch user in Zen
+// thumb second keys: ctrl+shift+tab (left, prev tab) / ctrl+tab (right, next tab)
+// -- flip left/right if you'd rather have next on the left.
                         bindings = <
    &kp LG(LS(N1)) &kp LG(LS(N2)) &kp LG(LS(N3)) &kp LG(LS(N4)) &kp LG(LS(N5))   &kp LG(LS(N6)) &kp LG(LS(N7)) &kp LG(LS(N8)) &kp LG(LS(N9)) &kp LG(LS(N0))
    &kp LG(N1)     &kp LG(N2)     &kp LG(N3)     &kp LG(N4)     &kp LG(N5)       &kp LG(N6)     &kp LG(N7)     &kp LG(N8)     &kp LG(N9)     &kp LG(N0)
-   &trans         &trans         &trans         &trans         &trans           &trans         &trans         &trans         &trans         &trans
-                                  &trans &trans &trans   &trans &trans &trans
+   &tmux_win1     &tmux_win2     &tmux_win3     &tmux_win4     &tmux_win5       &tmux_win6     &tmux_win7     &tmux_win8     &tmux_win9     &tmux_win0
+                    &kp LC(LA(F)) &kp LC(LS(TAB)) &trans   &trans &kp LC(TAB) &kp LC(LA(N))
                         >;
                 };
         };
