@@ -40,3 +40,11 @@ include:
   # split pairing between the halves.
   - board: nice_nano_v2
     shield: settings_reset
+  # TEMPORARY: right half as a standalone, non-split keyboard, so it can be
+  # tested alone over USB. Do NOT leave this on the right half for normal
+  # use -- it won't pair with the left. Remove once the right half is
+  # confirmed working again.
+  - board: nice_nano_v2
+    shield: dactyl_cygnus_right
+    cmake-args: -DCONFIG_ZMK_SPLIT=n
+    artifact-name: dactyl_cygnus_right_standalone_test
