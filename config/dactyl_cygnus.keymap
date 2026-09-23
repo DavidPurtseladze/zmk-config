@@ -62,6 +62,13 @@
                         key-positions = <3 4>;
                         bindings = <&kp CAPS>;
                 };
+// Top row, right hand, positions 6+7 (L and U). Frees up the thumb
+// key that used to hold Enter on default_layer for Backspace instead.
+                combo_enter {
+                        timeout-ms = <50>;
+                        key-positions = <6 7>;
+                        bindings = <&kp RET>;
+                };
         };
 
         keymap {
@@ -74,13 +81,14 @@
 // |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /   |
 // thumb outer keys: gui (left) / hold control_layer (right)
 // thumb second keys: ctrl (left) / shift (right)
-// thumb inner keys: left -> space, right -> enter
-// Combos: Q+W -> Esc, A+R -> Tab, P+B -> Caps Lock, N+E -> navigation_layer
+// thumb inner keys: left -> space, right -> backspace
+// Combos: Q+W -> Esc, A+R -> Tab, P+B -> Caps Lock, L+U -> Enter,
+// N+E -> navigation_layer
                         bindings = <
    &kp Q &kp W &kp F &kp P &kp B     &kp J &kp L &kp U     &kp Y   &kp SEMI
    &kp A &kp R &kp S &kp T &kp G     &kp M &kp N &kp E     &kp I   &kp O
    &kp Z &kp X &kp C &kp D &kp V     &kp K &kp H &kp COMMA &kp DOT &kp FSLH
-               &kp LGUI &kp LCTRL &kp SPACE   &kp RET &kp LSHFT &mo 1
+               &kp LGUI &kp LCTRL &kp SPACE   &kp BSPC &kp LSHFT &mo 1
                         >;
                 };
 
