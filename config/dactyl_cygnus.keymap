@@ -17,6 +17,13 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+// Keep caps word on across spaces and dashes too, so it behaves like a
+// Caps Lock (letters, digits, _, backspace and delete already continue it
+// by default). Any other key, or P+B again, ends it.
+&caps_word {
+        continue-list = <UNDERSCORE MINUS SPACE BACKSPACE DELETE>;
+};
+
 / {
         macros {
 // Each taps the tmux prefix (ctrl+space) then releases it before tapping
@@ -56,11 +63,13 @@
                 };
 // Top row, positions 3+4 (P and B) -- deliberately two keys spanning
 // the pinky/ring reach, not two adjacent home-row keys, so Caps Lock
-// can't be triggered by accident.
+// can't be triggered by accident. Uses ZMK's caps word (shifts letters
+// in firmware) rather than &kp CAPS, since the laptop's OS remaps the
+// real Caps Lock key to Ctrl. Tap P+B again to turn it off.
                 combo_capslock {
                         timeout-ms = <50>;
                         key-positions = <3 4>;
-                        bindings = <&kp CAPS>;
+                        bindings = <&caps_word>;
                 };
 // Top row, right hand, positions 6+7 (L and U). Frees up the thumb
 // key that used to hold Enter on default_layer for Backspace instead.
@@ -82,7 +91,7 @@
 // thumb outer keys: gui (left) / hold control_layer (right)
 // thumb second keys: ctrl (left) / shift (right)
 // thumb inner keys: left -> space, right -> backspace
-// Combos: Q+W -> Esc, A+R -> Tab, P+B -> Caps Lock, L+U -> Enter,
+// Combos: Q+W -> Esc, A+R -> Tab, P+B -> Caps Word, L+U -> Enter,
 // N+E -> navigation_layer
 // TEMPORARY for left-half bring-up: left thumbs are normally &kp LGUI
 // &kp LCTRL &kp SPACE -- GUI/Ctrl print nothing, so they can't be tested
