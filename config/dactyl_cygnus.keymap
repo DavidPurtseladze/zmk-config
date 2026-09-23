@@ -61,21 +61,21 @@
                 control_layer {
 // Held via the right thumb outer key -- this is the ONLY layer
 // reached by holding; every other layer is a tap-and-switch (&to).
-// Row 1 = numbers. Row 2 = arrows (right hand) + Page Up/Down under
-// the left hand's middle/index fingers (cols 0,1,4 still open). Row 3
-// used to be F-keys -- moved to media_layer to make room for the
-// layer hub below: while holding this key, tap one of these to
-// permanently switch to that layer (mirrored on both hands so
-// whichever hand's fingers are free can reach it).
+// Row 1 = numbers. Row 2 = arrows (right hand, starting one key in)
+// + Page Up/Down under the left hand's middle/index fingers. Row 3:
+// left hand is the layer hub -- while holding this key, tap one of
+// these to permanently switch to that layer -- right hand is media
+// transport + volume instead (no need to leave this layer just to
+// tap play/pause or adjust volume).
 // -----------------------------------------------------------------
 // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0   |
-// |     |     | PGUP| PGDN|     |   | LFT | DWN |  UP | RGT |      |
-// | DEF | SYM | NAV | MED |     |   | DEF | SYM | NAV | MED |      |
+// |     |     | PGUP| PGDN|     |   |     | LFT | DWN |  UP | RGT  |
+// | DEF | SYM | NAV | MED |     |   |PREV | PLAY|NEXT |VOL- |VOL+  |
 //             | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp N1 &kp N2   &kp N3   &kp N4   &kp N5    &kp N6   &kp N7   &kp N8 &kp N9    &kp N0
-   &trans &trans   &kp PG_UP &kp PG_DN &trans   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans
-   &to 0  &to 2    &to 3    &to 4    &trans    &to 0    &to 2    &to 3  &to 4     &trans
+   &trans &trans   &kp PG_UP &kp PG_DN &trans   &trans   &kp LEFT &kp DOWN &kp UP &kp RIGHT
+   &to 0  &to 2    &to 3    &to 4    &trans    &kp C_PREV &kp C_PP &kp C_NEXT &kp C_VOL_DN &kp C_VOL_UP
                     &kp LGUI &trans &kp SPACE   &kp RET &trans &kp RALT
                         >;
                 };
