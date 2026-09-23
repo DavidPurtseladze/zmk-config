@@ -46,42 +46,44 @@
 // |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  ;   |
 // |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O   |
 // |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /   |
-//             | GUI | LWR | SPC |   | ENT | RSE | ALT |
-// TEMPORARY for hardware bring-up: right thumb keys 2 and 3 are normally
-// &mo 2 (layer-shift) and &kp RALT (bare modifier) -- neither produces
-// visible text in Notepad even when wired correctly, which makes them
-// impossible to bench-test by typing. Swapped to visible N8/N9 for testing;
-// revert to &mo 2 / &kp RALT once both are confirmed working.
+//             | GUI |     | SPC |   | ENT | ALT | HOLD:CTRL |
+// Right thumb outer key holds into control_layer (the layer hub) --
+// everything else (symbols, navigation, media) is reached from there,
+// or via the N+E combo for navigation directly.
                         bindings = <
    &kp Q &kp W &kp F &kp P &kp B     &kp J &kp L &kp U     &kp Y   &kp SEMI
    &kp A &kp R &kp S &kp T &kp G     &kp M &kp N &kp E     &kp I   &kp O
    &kp Z &kp X &kp C &kp D &kp V     &kp K &kp H &kp COMMA &kp DOT &kp FSLH
-               &kp LGUI &mo 1 &kp SPACE   &kp RET &kp N8 &kp N9
+               &kp LGUI &trans &kp SPACE   &kp RET &kp RALT &mo 1
                         >;
                 };
 
-                lower_layer {
-// Row 1 = numbers, row 3 = F-keys, both column-aligned (F1 under 1,
-// etc.) for the same reason raise_layer's top row aligns with this
-// one. Row 2: arrows on the right hand, Page Up/Down under the left
-// hand's middle/index fingers -- left cols 0,1,4 still open.
+                control_layer {
+// Held via the right thumb outer key -- this is the ONLY layer
+// reached by holding; every other layer is a tap-and-switch (&to).
+// Row 1 = numbers. Row 2 = arrows (right hand) + Page Up/Down under
+// the left hand's middle/index fingers (cols 0,1,4 still open). Row 3
+// used to be F-keys -- moved to media_layer to make room for the
+// layer hub below: while holding this key, tap one of these to
+// permanently switch to that layer (mirrored on both hands so
+// whichever hand's fingers are free can reach it).
 // -----------------------------------------------------------------
 // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0   |
 // |     |     | PGUP| PGDN|     |   | LFT | DWN |  UP | RGT |      |
-// |  F1 |  F2 |  F3 |  F4 |  F5 |   |  F6 |  F7 |  F8 |  F9 | F10  |
+// | DEF | SYM | NAV | MED |     |   | DEF | SYM | NAV | MED |      |
 //             | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp N1 &kp N2   &kp N3   &kp N4   &kp N5    &kp N6   &kp N7   &kp N8 &kp N9    &kp N0
    &trans &trans   &kp PG_UP &kp PG_DN &trans   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans
-   &kp F1 &kp F2   &kp F3   &kp F4   &kp F5    &kp F6   &kp F7   &kp F8 &kp F9    &kp F10
+   &to 0  &to 2    &to 3    &to 4    &trans    &to 0    &to 2    &to 3  &to 4     &trans
                     &kp LGUI &trans &kp SPACE   &kp RET &trans &kp RALT
                         >;
                 };
 
-                raise_layer {
+                symbols_layer {
 // One rule for the whole layer: home row = base symbol, bottom row =
 // its Shift-variant, same column. (Top row already follows this same
-// pattern relative to lower_layer's number row -- including ( and ),
+// pattern relative to control_layer's number row -- including ( and ),
 // which is why parens stay on the right instead of also splitting.)
 //
 // The two innermost columns (index fingers, either side of the split)
@@ -130,17 +132,19 @@
 // hand: media transport + volume (row 1), Bluetooth profile select
 // (row 2) -- kept even though this build is wired, since nice_nano_v2
 // also has BLE and this makes it easy to pair with another device
-// later; drop it if you'd rather not carry the option.
+// later; drop it if you'd rather not carry the option. Row 3: F-keys,
+// moved here from control_layer. Right thumb outer key left open --
+// control_layer is hold-only now, so there's no &to target for it.
 // -----------------------------------------------------------------
 // | HOME| END | INS | DEL | BSPC|   |PREV | PLAY|NEXT |VOL- |VOL+  |
 // |UNDO |CUT  |COPY |PASTE|REDO |   |BTCLR| BT1 | BT2 | BT3 | BT4  |
-// |     |     |     |     |     |   |     |     |     |     |      |
-//             | SYM | DEF | SPC |   | ENT | NAV | NUM |
+// |  F1 |  F2 |  F3 |  F4 |  F5 |   |  F6 |  F7 |  F8 |  F9 | F10  |
+//             | SYM | DEF | SPC |   | ENT | NAV |     |
                         bindings = <
    &kp HOME  &kp END  &kp INS  &kp DEL  &kp BSPC     &kp C_PREV &kp C_PP    &kp C_NEXT &kp C_VOL_DN &kp C_VOL_UP
    &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V) &kp LC(LS(Z))   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
-   &trans    &trans   &trans   &trans   &trans       &trans     &trans      &trans     &trans       &trans
-                    &to 2 &to 0 &kp SPACE   &kp RET &to 3 &to 1
+   &kp F1    &kp F2   &kp F3   &kp F4   &kp F5       &kp F6     &kp F7      &kp F8     &kp F9       &kp F10
+                    &to 2 &to 0 &kp SPACE   &kp RET &to 3 &trans
                         >;
                 };
         };
