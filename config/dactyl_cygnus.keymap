@@ -84,11 +84,15 @@
 // thumb inner keys: left -> space, right -> backspace
 // Combos: Q+W -> Esc, A+R -> Tab, P+B -> Caps Lock, L+U -> Enter,
 // N+E -> navigation_layer
+// TEMPORARY for left-half bring-up: left thumbs are normally &kp LGUI
+// &kp LCTRL &kp SPACE -- GUI/Ctrl print nothing, so they can't be tested
+// by typing. Swapped to visible N1/N2/N3 (outer..inner); revert once
+// the left thumb cluster is confirmed working.
                         bindings = <
    &kp Q &kp W &kp F &kp P &kp B     &kp J &kp L &kp U     &kp Y   &kp SEMI
    &kp A &kp R &kp S &kp T &kp G     &kp M &kp N &kp E     &kp I   &kp O
    &kp Z &kp X &kp C &kp D &kp V     &kp K &kp H &kp COMMA &kp DOT &kp FSLH
-               &kp LGUI &kp LCTRL &kp SPACE   &kp BSPC &kp LSHFT &mo 1
+               &kp N1 &kp N2 &kp N3   &kp BSPC &kp LSHFT &mo 1
                         >;
                 };
 

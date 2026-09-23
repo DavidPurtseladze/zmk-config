@@ -27,3 +27,16 @@ include:
     shield: dactyl_cygnus_left
   - board: nice_nano_v2
     shield: dactyl_cygnus_right
+  # TEMPORARY left-half bring-up: same left firmware, plus USB logging so
+  # every physical key press is printed with its raw row/col over the USB
+  # serial port -- including presses on matrix positions the keymap
+  # doesn't use, which typing-based testing can't see. Remove once the
+  # left thumb cluster is confirmed.
+  - board: nice_nano_v2
+    shield: dactyl_cygnus_left
+    snippet: zmk-usb-logging
+    artifact-name: dactyl_cygnus_left_debug_log
+  # Flash to BOTH halves (then the normal firmware) to clear stale BLE
+  # split pairing between the halves.
+  - board: nice_nano_v2
+    shield: settings_reset
